@@ -1,7 +1,46 @@
+'use client';
 import Image from "next/image";
+import SignIn from "./login/signin";
+import SignUp from "./register/signup";
+import Dashboard from "./dashboard/dashboard";
+import { Chivo } from 'next/font/google';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+
 
 export default function Home() {
+
+  const user = useSelector((state) => state.user.user);
+  const router = useRouter();
+
+  const handleNavigation = (path) => {
+    router.push(path);
+  };
+
   return (
+
+    <div>
+      <h1>Welcome to Sensor Dashboard</h1>
+      {user ? (
+        <button onClick={() => handleNavigation('/dashboard')}>Go to Dashboard</button>
+      ) : (
+        <>
+          <button onClick={() => handleNavigation('/login')}>Login</button>
+          <button onClick={() => handleNavigation('/register')}>Register</button>
+        </>
+      )}
+    </div>
+
+    /*<SignIn/>*/
+
+    /*<SignUp/>*/
+
+    /*<Dashboard/>*/
+
+    
+
+    
+    /*
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
@@ -97,5 +136,6 @@ export default function Home() {
         </a>
       </footer>
     </div>
+    */
   );
 }
