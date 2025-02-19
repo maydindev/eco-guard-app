@@ -41,7 +41,7 @@ export default function LoginPage() {
       }
       return;
     }
-    dispatch(login({ username: "admin" }));
+    //dispatch(login({ username: "admin" }));
     router.push("/dashboard");
   };
 

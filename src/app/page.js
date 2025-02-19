@@ -1,23 +1,37 @@
 'use client';
-import Image from "next/image";
-import SignIn from "./login/signin";
-import SignUp from "./register/signup";
+//import Image from "next/image";
+//import SignIn from "./login/signin";
+import LoginPage from "./login/page";
+/*import SignUp from "./register/signup";
 import Dashboard from "./dashboard/dashboard";
 import { Chivo } from 'next/font/google';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';*/
 
 
 export default function Home() {
 
-  const user = useSelector((state) => state.user.user);
+  /*const user = useSelector((state) => state.user.user);
   const router = useRouter();
 
   const handleNavigation = (path) => {
     router.push(path);
-  };
+  };*/
 
   return (
+
+    
+
+<LoginPage/>
+
+    
+
+    /*<SignUp/>*/
+
+    /*<Dashboard/>*/
+
+
+    /*
 
     <div>
       <h1>Welcome to Sensor Dashboard</h1>
@@ -31,11 +45,7 @@ export default function Home() {
       )}
     </div>
 
-    /*<SignIn/>*/
-
-    /*<SignUp/>*/
-
-    /*<Dashboard/>*/
+    */
 
     
 
