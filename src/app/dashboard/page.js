@@ -96,11 +96,15 @@ export default function Dashboard() {
       </div>
 
       <div>
-        <h1>Dashboard</h1>
-        {status === "loading" && <p>Loading sensor data...</p>}
-        {status === "failed" && <p>Error: {error}</p>}
         <pre>{JSON.stringify(sensorData, null, 2)}</pre>
       </div>
     </div>
   );
 }
+
+/*
+  <div>
+        {status === "loading" && <p>Loading sensor data...</p>}
+        {status === "failed" && <p>Error: {error}</p>}
+      </div>
+*/
