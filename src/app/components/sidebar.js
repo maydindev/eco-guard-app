@@ -3,7 +3,7 @@ import "/src/app/globals.css";
 import Head from "next/head";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function Sidebar({onClickDashboard}) {
+function Sidebar({onClickDashboard, onClickLogout}) {
   return (
 
     <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] m-5 /*border border-red-500*/">
@@ -52,7 +52,7 @@ function Sidebar({onClickDashboard}) {
           </li>
           <li className="flex items-center gap-4 ">
             <img src="/icondashboardmessage.png" alt="" />
-            <a href="#" className=" text-[#6C7894]">Logout</a>
+            <button onClick={onClickLogout} href="#" className=" text-[#6C7894]">Logout</button>
           </li>
         </ul>
       </div>

@@ -6,7 +6,7 @@ import Head from "next/head";
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
 function Notification({notification}) {
   return (
-    <div className="flex justify-between items-center border bg-white w-[1000px] h-[100px] px-5 mt-5 rounded-2xl">
+    <div className="flex justify-between items-center border bg-white w-[1100px] h-[100px] px-5 mt-5 rounded-2xl">
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"

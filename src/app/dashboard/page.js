@@ -13,11 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchSensorData } from "../slices/sensorSlice";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const [notifications, setNotifications] = useState(false);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const sensorData = useSelector((state) => state.sensor);
   //const { rooms, status, error } = sensorData;
@@ -30,11 +32,17 @@ export default function Dashboard() {
 
   const handleClickNotifications = () => setNotifications(true);
   const handleClickDashboard = () => setNotifications(false);
+  const handleClickLogout = () => router.push("/login");
 
   return (
     <div>
       <div className="flex justify-center items-start  bg-[#E8F3FC]">
-        <Sidebar onClickDashboard={handleClickDashboard} />
+        <div>
+          <Sidebar
+            onClickDashboard={handleClickDashboard}
+            onClickLogout={handleClickLogout}
+          />
+        </div>
 
         <div className="flex flex-col justify-center items-start text-black /*border border-green-500*/">
           <Headbar
@@ -49,16 +57,18 @@ export default function Dashboard() {
                 sensorData.map((room) => <Room key={room.id} room={room} />)}
             </div>
           </div>
-
-          {notifications &&
-            userData.map((notification) => (
-              <div className="flex flex-col justify-center items-center">
-                <Notification
-                  key={notification.id}
-                  notification={notification}
-                />
-              </div>
-            ))}
+          <div className="ml-12">
+            <div>
+            {notifications &&
+              userData.map((notification) => (
+                <div className="flex flex-col justify-center items-center">
+                  <Notification
+                    key={notification.id}
+                    notification={notification}
+                  />
+                </div>
+              ))}</div>
+          </div>
 
           <div className="flex flex-col justify-start items-start /*border border-green-500*/ mt-4 mx-20">
             {!notifications && <CategoryTitle key={0} title={"Levels"} />}
@@ -95,12 +105,18 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div>
-        <pre>{JSON.stringify(sensorData, null, 2)}</pre>
-      </div>
+      {!notifications && (
+        <div>
+          <pre>{JSON.stringify(sensorData, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
+
+/*
+
+*/
 
 /*
   <div>
