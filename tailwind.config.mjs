@@ -13,6 +13,8 @@ export default {
       },
       fontFamily: {
         chivo: ['Chivo', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        jetbrains_mono: "var(--font-jetbrains-mono)",
       },
     },
   },

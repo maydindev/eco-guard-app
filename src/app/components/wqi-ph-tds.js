@@ -3,9 +3,8 @@ import "/src/app/globals.css";
 import Head from "next/head";
 import { useState } from "react";
 
-
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function WqiPhTds({title,value,statusTag}) {
+function WqiPhTds({ title, value, statusTag }) {
   const [phLevel, setPhLevel] = useState(7.5);
   const [selectedRange, setSelectedRange] = useState("1D");
 
@@ -29,44 +28,25 @@ function WqiPhTds({title,value,statusTag}) {
   // w-full mx-auto max-w-4xl
 
   return (
-      <div className="bg-white shadow-md rounded-[15px] mb-5 p-4 w-[908px]">
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
-
-        <h2 className="text-lg font-semibold mb-2">{title}</h2>
-
-        {/* İlerleme Çubuğu */}
-        <div className="relative w-full h-4 bg-blue-200 rounded-full overflow-hidden mt-3">
-          <div
-            className="absolute top-0 left-0 h-full rounded-full transition-all duration-300"
-            style={{
-              width: `${(phLevel / 14) * 100}%`,
-              backgroundColor: "#3b82f6",
-            }}
-          />
-        </div>
-
-        {/* pH Değeri ve Durum */}
-        <div className="flex items-center gap-2 mt-3">
-          <span className="text-3xl font-bold text-blue-500">{phLevel}</span>
-          <span className="text-xs font-semibold px-2 py-1 border border-green-500 rounded text-green-500">
-            {status.label}
-          </span>
-        </div>
-
+    <div className="bg-white shadow-md rounded-[15px] mb-5 p-4 w-[908px]">
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <div className="mx-5">
+      <div className="flex justify-between items-center mt-1 mb-3">
         {/* Zaman Filtreleri */}
-        <div className="flex justify-end mt-3 space-x-2">
+        <h2 className="text-[20px]">{title}</h2>
+        <div className="flex justify-end items-center mb-1 mr-8">
           {["1H", "1D", "1W", "1M"].map((range) => (
             <button
               key={range}
-              className={`px-3 py-1 text-xs font-medium rounded ${
+              className={`px-2 py-1 text-[10px] font-medium ${
                 selectedRange === range
-                  ? "bg-gray-200 text-black"
-                  : "text-gray-400"
+                  ? "bg-[#FFFFFF] text-black font-bold rounded-[6px] border border-[#F3F3F7]"
+                  : "text-[#797E82] bg-[#F3F3F7]"
               }`}
               onClick={() => setSelectedRange(range)}
             >
@@ -76,6 +56,34 @@ function WqiPhTds({title,value,statusTag}) {
         </div>
       </div>
 
+      {/* İlerleme Çubuğu */}
+      <div className="relative w-full h-[21px] bg-[#2396EF59] rounded-full overflow-hidden mt-3">
+        <div
+          className="absolute top-0 left-0 h-full rounded-full transition-all duration-300"
+          style={{
+            width: `${(phLevel / 14) * 100}%`,
+            backgroundColor: "#0386FF",
+          }}
+        />
+      </div>
+
+      {/* pH Değeri ve Durum */}
+      <div className="flex items-center gap-3 mt-3">
+        <span
+          className="text-[34px] font-bold font-inter text-[#2396EF]"
+          style={{
+            fontWeight: 900,
+            lineHeight: "41px",
+          }}
+        >
+          {phLevel}
+        </span>
+        <span className="text-[8px] font-bold px-1 py-0.50 border border-[#03AB00] rounded text-[#03AB00] ">
+          {status.label}
+        </span>
+      </div>
+      </div>
+    </div>
   );
 }
 

@@ -59,62 +59,75 @@ export default function Dashboard() {
           </div>
           <div className="ml-12">
             <div>
-            {notifications &&
-              userData.map((notification) => (
-                <div className="flex flex-col justify-center items-center">
-                  <Notification
-                    key={notification.id}
-                    notification={notification}
-                  />
-                </div>
-              ))}</div>
+              {notifications &&
+                userData.map((notification) => (
+                  <div className="flex flex-col justify-center items-center">
+                    <Notification
+                      key={notification.id}
+                      notification={notification}
+                    />
+                  </div>
+                ))}
+            </div>
           </div>
 
           <div className="flex flex-col justify-start items-start /*border border-green-500*/ mt-4 mx-20">
-            {!notifications && <CategoryTitle key={0} title={"Levels"} />}
-            {!notifications && (
-              <div className="flex justify-between items-center bg-white w-[911px] h-[63px]">
-                <div className="flex ml-5">
-                  <img src="/icondashboardaqi.png" alt="" className="mr-3" />
-                  <span className="text-[20px]">AQI</span>
-                </div>
-                <div className="mr-5">
-                  <img src="/icondashboarddownarrow.png" alt="" />
-                </div>
-              </div>
-            )}
-            <div className="flex justify-center items-center">
-              {!notifications && <AQI />}
+            <div>
+              {!notifications && <CategoryTitle key={1} title={"Levels"} />}
             </div>
-
-            {!notifications && (
-              <div className="flex justify-between items-center bg-white w-[911px] h-[63px] mt-20 mb-5">
-                <div className="flex ml-5">
-                  <img src="/icondashboardwqi.png" alt="" className="mr-3" />
-                  <span className="text-[20px]">WQI</span>
+            <div>
+              {!notifications && (
+                <div className="flex justify-between items-center bg-white w-[911px] h-[63px] rounded-[15px]">
+                  <div className="flex ml-5">
+                    <img src="/icondashboardaqi.png" alt="" className="mr-3" />
+                    <span className="text-[20px]">AQI</span>
+                  </div>
+                  <div className="mr-5">
+                    <img src="/icondashboarddownarrow.png" alt="" />
+                  </div>
                 </div>
-                <div className="mr-5">
-                  <img src="/icondashboarddownarrow.png" alt="" />
-                </div>
-              </div>
-            )}
+              )}
+            </div>
             <div className="flex justify-center items-center">
-              {!notifications && <WQI />}
+              <div> {!notifications && <AQI />} </div>
+            </div>
+            <div>
+              {!notifications && (
+                <div className="flex justify-between items-center bg-white w-[911px] h-[63px] mt-20 mb-5 rounded-[15px]">
+                  <div className="flex ml-5">
+                    <img src="/icondashboardwqi.png" alt="" className="mr-3" />
+                    <span className="text-[20px]">WQI</span>
+                  </div>
+                  <div className="mr-5">
+                    <img src="/icondashboarddownarrow.png" alt="" />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="flex justify-center items-center">
+              <div>{!notifications && <WQI />}</div>
             </div>
           </div>
         </div>
       </div>
+      
+      
 
-      {!notifications && (
-        <div>
-          <pre>{JSON.stringify(sensorData, null, 2)}</pre>
-        </div>
-      )}
     </div>
   );
 }
 
+
+
 /*
+
+<div>
+        {!notifications && (
+          <div>
+            <pre>{JSON.stringify(sensorData, null, 2)}</pre>
+          </div>
+        )}
+      </div>
 
 */
 

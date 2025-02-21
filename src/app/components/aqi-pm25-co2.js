@@ -2,6 +2,7 @@
 import React from "react";
 import "/src/app/globals.css";
 import Head from "next/head";
+import { useState } from "react";
 import { cn } from "@/lib/utils"; // Opsiyonel: Tailwind yardımcı fonksiyonu
 import {
   LineChart,
@@ -16,14 +17,14 @@ import {
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
 function AqiPm25Co2() {
-  //const [selectedRange, setSelectedRange] = useState("1D");
+  const [selectedRange, setSelectedRange] = useState("1D");
 
   const sampleData = [
     { name: "10", value: 10 },
     { name: "20", value: 30 },
-    { name: "30", value: 25 },
-    { name: "40", value: 35 },
-    { name: "50", value: 50 },
+    { name: "30", value: 10 },
+    { name: "40", value: 20 },
+    { name: "50", value: 40 },
   ];
 
   return (
@@ -35,13 +36,26 @@ function AqiPm25Co2() {
         />
       </Head>
 
-      <h2 className="text-lg font-semibold">PM2.5</h2>
-      <div className="flex justify-end space-x-2 text-sm text-gray-500">
-        <button className="px-2 py-1 bg-gray-200 rounded">1H</button>
-        <button className="px-2 py-1 bg-gray-300 rounded font-bold">1D</button>
-        <button className="px-2 py-1 bg-gray-200 rounded">1W</button>
-        <button className="px-2 py-1 bg-gray-200 rounded">1M</button>
+      <div className="flex justify-between items-center mb-3">
+        {/* Zaman Filtreleri */}
+        <h2 className="text-[20px] mb-8">PM2.5</h2>
+        <div className="flex justify-end items-center mr-2">
+          {["1H", "1D", "1W", "1M"].map((range) => (
+            <button
+              key={range}
+              className={`px-2 py-1 text-[10px] font-medium ${
+                selectedRange === range
+                  ? "bg-[#FFFFFF] text-black font-bold rounded-[6px] border border-[#F3F3F7]"
+                  : "text-[#797E82] bg-[#F3F3F7]"
+              }`}
+              onClick={() => setSelectedRange(range)}
+            >
+              {range}
+            </button>
+          ))}
+        </div>
       </div>
+
       <ResponsiveContainer width="100%" height={120}>
         <AreaChart
           data={sampleData}
@@ -49,8 +63,8 @@ function AqiPm25Co2() {
         >
           <defs>
             <linearGradient id="colorPm25" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              <stop offset="5%" stopColor="#2396EF69" /*stopColor="#FFFFFF"*/ stopOpacity={0.9} />
+              <stop offset="95%" stopColor="#FFFFFF" /*stopColor="#2396EF69"*/ stopOpacity={0.9} />
             </linearGradient>
           </defs>
           <XAxis
@@ -64,7 +78,7 @@ function AqiPm25Co2() {
           <Area
             type="linear"
             dataKey="value"
-            stroke="#3b82f6"
+            stroke="#2396EF"
             fill="url(#colorPm25)"
             strokeWidth={2}
             /*dot={{ r: 5, fill: "#3b82f6", strokeWidth: 1 }}*/
@@ -101,9 +115,9 @@ function AqiPm25Co2() {
           />
         </AreaChart>
       </ResponsiveContainer>
-      <div className="flex justify-between text-sm text-gray-600 mt-2">
-        <span>Current:</span>
-        <span>Condition:</span>
+      <div className="flex justify-start items-center text-[14px] text-[#606060] mt-2">
+        <span className="mr-32">Current:{""}</span>
+        <span>Condition:{""}</span>
       </div>
     </div>
   );

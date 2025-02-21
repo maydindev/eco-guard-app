@@ -23,9 +23,9 @@ function WQI() {
 
       <WqiTemperature />
 
-      <WqiPhTds  title={"PH Level"} value={""} statusTag={""}/>
+      <WqiPhTds  title={"PH Level"} value={7.5} statusTag={""}/>
 
-      <WqiPhTds  title={"TDS Level"} value={""} statusTag={""}/>
+      <WqiPhTds  title={"TDS Level"} value={115} statusTag={""}/>
    
     </div>
   );
