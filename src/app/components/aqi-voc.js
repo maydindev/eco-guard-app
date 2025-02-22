@@ -31,7 +31,7 @@ function AqiVoc() {
   ];
 
   return (
-    <div className="flex flex-col justify-center items-center w-[450px] h-[270px] bg-white rounded-[15px] shadow-md font-chivo">
+    <div className="flex flex-col justify-center items-center w-[460px] h-[270px] bg-white rounded-[15px] shadow-md font-chivo">
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"

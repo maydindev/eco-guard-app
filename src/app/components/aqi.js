@@ -11,7 +11,7 @@ import AqiVoc from "../components/aqi-voc";
 function AQI() {
 
   return (
-    <div className="flex flex-col justify-center items-between ">
+    <div className="flex flex-col w-[911px] justify-betwen items-between /*border border-red-500*/">
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
@@ -19,7 +19,7 @@ function AQI() {
         />
       </Head>
 
-      <div className="flex my-3">
+      <div className="flex my-3 justify-between">
         <AqiPm25Co2 />
 
         <AqiTemperatureHumidity />
@@ -27,7 +27,7 @@ function AQI() {
         <AqiTemperatureHumidity />
       </div>
 
-      <div className="flex my-3">
+      <div className="flex my-3 justify-between">
         <AqiPm25Co2 />
 
         <AqiVoc />
