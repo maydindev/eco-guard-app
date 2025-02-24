@@ -133,7 +133,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div> : <p>Yetkisiz erişim! Lütfen giriş yapın.</p>}
+      </div> : <p>Oturum kapatılıyor!</p>}
     </div>
   );
 }

@@ -9,10 +9,43 @@ export default function RegisterPage() {
   const handleRegister = () => {
     router.push("/login");
   };
+  
 
+  // /signupbackground.png
   return (
     <div className="w-full h-screen bg-white bg-cover rounded-lg bg-center">
-      <div className="w-full h-screen bg-[url('/signupbackground.png')] bg-no-repeat bg-cover rounded-tr-[700px] rounded-br-[150px] bg-center absolute inset-0">
+      <div className="w-full h-screen bg-no-repeat bg-cover bg-center absolute inset-0">
+        <svg
+          width="1509"
+          height="752"
+          viewBox="0 0 1509 752"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute inset-0 w-full h-full"
+        >
+          <mask
+            id="cloudMask"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="1509"
+            height="756"
+          >
+            <path
+              d="M0 244.387V756H1508.59V0C1468.71 60.6018 1358.33 171.025 1235.92 127.903C1082.92 74.0012 928.998 158.966 871.906 292.807C826.233 399.881 750.872 513.846 667.289 548.614C610.654 572.172 406.22 581.412 326.565 383.71C246.911 186.008 75.6657 208.452 0 244.387Z"
+              fill="white"
+            />
+          </mask>
+          <g mask="url(#cloudMask)">
+            <image
+              href="/signupbackground.png"
+              width="1546.91"
+              height="870.081"
+              transform="matrix(-1 0 0 1 1528.18 -57.0405)"
+            />
+          </g>
+        </svg>
+
         <div className="flex p-6">
           <img
             src="/ecoguardlogo.png"
