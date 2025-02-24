@@ -1,7 +1,7 @@
 import React from "react";
 import "/src/app/globals.css";
 
-function Headbar({title, handleClickNotifications}) {
+function Headbar({title, onClickNotifications}) {
 
   return (
 
@@ -19,7 +19,7 @@ function Headbar({title, handleClickNotifications}) {
 
       <div className="flex justify-center items-center gap-6 mt-4 border">
         <img src="/icondashboardtogglesmall.png" alt="" />
-        <button onClick={handleClickNotifications}><img src="/icondashboardnotification.png" alt="" /></button>
+        <button onClick={onClickNotifications}><img src="/icondashboardnotification.png" alt="" /></button>
         <img src="/icondashboardsupport.png" alt="" />
       </div>
 

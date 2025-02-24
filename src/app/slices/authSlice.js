@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useRouter } from "next/navigation";
-//import users from "@/data/users"; // Kullanıcı bilgilerini içeren dosya
 
 const users = [
-    { username: "admin", password: "123456" },
-    { username: "ayşe", password: "654321" },
+    { userid: 1, username: "admin", password: "123456", fullname: "Namık Korona"},
+    { userid: 2, username: "a", password: "1", fullname: "N K" },
   ];
 
 const initialState = {

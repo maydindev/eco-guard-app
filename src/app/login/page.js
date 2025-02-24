@@ -16,37 +16,33 @@ export default function LoginPage() {
   const [isAgreeError, setIsAgreeError] = useState("");
   const { user, error } = useSelector((state) => state.auth);
 
-  const handleLogin = () => {
-    dispatch(login({ username, password }));
+  useEffect(() => {
     if (user && isAgree) {
       router.push("/dashboard");
       setIsAgreeError("");
-    } else {
-      setIsAgreeError("Koşulları kabul etmelisiniz!");
     }
+  }, [user, isAgree]); // user değiştiğinde çalışır
+
+  /*
+  login butonuna iki defa basmanızın temel sebebi Redux store'daki user değerinin güncellenme zamanlamasıyla ilgilidir. İlk tıklamada dispatch(login({ username, password })) çalışıyor ancak user state’i hemen güncellenmediği için if (user && isAgree) kontrolü başarısız oluyor. Redux store güncellendiğinde ise ikinci tıklamada user değeri doğru olduğu için yönlendirme gerçekleşiyor.
+  */
+
+  const handleLogin = () => {
+    dispatch(login({ username, password }));
+
+  if (!isAgree) {
+    setIsAgreeError("Koşulları kabul etmelisiniz!");
+  } else {
+    setIsAgreeError("");
+  }
+    
   };
 
   const handleSignUp = () => {
     router.push("/register");
   };
 
-  /*
 
-  <svg width="1292" height="982" viewBox="0 0 1292 982" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<mask id="mask0_0_873" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-365" y="-144" width="1657" height="1715">
-<ellipse cx="463.195" cy="713.5" rx="828.195" ry="857.5" fill="#D9D9D9"/>
-</mask>
-<g mask="url(#mask0_0_873)">
-<rect x="-1.23975" y="1.74487" width="1436.05" height="980.285" fill="url(#pattern0_0_873)"/>
-</g>
-<defs>
-<pattern id="pattern0_0_873" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_0_873" transform="matrix(0.001637 0 0 0.00239808 -0.0123806 0)"/>
-</pattern>
-</defs>
-</svg>
-
-  */
 
   //bg-[url('/signinbackground.png')]
   // rounded-tr-[700px] rounded-br-[150px]
@@ -81,15 +77,31 @@ export default function LoginPage() {
   
           */
 
+      /*
+
+      <div className="flex p-6 ">
+        <img
+          src="/ecoguardlogo.png"
+          alt="logo"
+          className="w-12 h-12 mr-2 align-baseline"
+        />
+        <img src="/ecoguardlogotext.png" alt="logo" className="h-10 mt-2" />
+      </div>
+
+     
+      */
+
+      console.log(isAgree);
+
   return (
-    <div className="h-screen bg-white border border-red-500">
+    <div className="flex justify-center items-center h-screen bg-white relative">
       <svg
         width="1292"
         height="982"
         viewBox="0 0 1292 982"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full border border-green-500"
+        className="absolute inset-0 w-full h-full "
       >
         <mask
           id="cloudMask"
@@ -114,21 +126,19 @@ export default function LoginPage() {
             y="1.74487"
             width="1436.05"
             height="980.285"
-            className="border border-blue-500"
           />
         </g>
       </svg>
 
-      <div className="flex p-6 border-2 border-purple-500">
-        <img
-          src="/ecoguardlogo.png"
-          alt="logo"
-          className="w-12 h-12 mr-2 align-baseline"
-        />
-        <img src="/ecoguardlogotext.png" alt="logo" className="h-10 mt-2" />
+
+      <div className="absolute top-4 left-72 flex items-center p-4">
+        <img src="/ecoguardlogo.png" alt="logo" className="w-12 h-12 mr-2" />
+        <img src="/ecoguardlogotext.png" alt="logo text" className="h-10" />
       </div>
 
-      <div className="flex justify-center">
+      
+
+      <div className="flex justify-center items-center">
         <div className="bg-black/65 p-8 rounded-2xl shadow-lg backdrop-blur-sm w-96 mt-8 relative">
           <div className="flex justify-start">
             <h2 className="text-2xl font-semibold text-white text-center mb-6 mt-6">
@@ -186,7 +196,9 @@ export default function LoginPage() {
                 type="checkbox"
                 className="mr-2 mt-1 appearance-none w-3 h-3 ml-4 border border-white  bg-transparent checked:bg-blue-500 checked:border-blue-500 focus:ring-2 focus:ring-blue-300"
                 value={isAgree}
-                onChange={(e) => setIsAgree(e.target.checked)}
+                onChange={(e) => {
+                  console.log(e.target.checked);
+                  setIsAgree(e.target.checked)}}
                 style={{ borderColor: isAgreeError ? "red" : "white" }}
               />
 

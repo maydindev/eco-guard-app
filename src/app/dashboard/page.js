@@ -16,6 +16,8 @@ import { logout } from "../slices/authSlice";
 
 export default function Dashboard() {
 
+  const sensorData = useSelector((state) => state.sensor);
+  const notificationData = useSelector((state) => state.notification);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -31,9 +33,9 @@ export default function Dashboard() {
   const [activeRoomId, setActiveRoomId] = useState(1);
 
 
+  //console.log(user);
 
-  const sensorData = useSelector((state) => state.sensor);
-  const userData = useSelector((state) => state.user);
+
 
   useEffect(() => {
     dispatch(fetchSensorData());
@@ -52,13 +54,15 @@ export default function Dashboard() {
           <Sidebar
             onClickDashboard={handleClickDashboard}
             onClickLogout={handleClickLogout}
+            onClickNotifications={handleClickNotifications}
+            notificationData={notificationData.filter((notification) => notification.userid === user.userid)}
           />
         </div>
 
         <div className="flex flex-col justify-center items-start text-black /*border border-green-500*/">
           <Headbar
             title={notifications ? "Notifications" : "Dashboard"}
-            handleClickNotifications={handleClickNotifications}
+            onClickNotifications={handleClickNotifications}
           />
 
           <div className="flex flex-col /*border border-purple-500*/ my-10 mx-20">
@@ -79,7 +83,7 @@ export default function Dashboard() {
           <div className="ml-12">
             <div>
               {notifications &&
-                userData.map((notification) => (
+                notificationData.filter((notification) => notification.userid === user.userid).map((notification) => (
                   <div className="flex flex-col justify-center items-center">
                     <Notification
                       key={notification.id}

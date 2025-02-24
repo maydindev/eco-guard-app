@@ -1,7 +1,8 @@
 import React from "react";
 import "/src/app/globals.css";
 
-function Sidebar({onClickDashboard, onClickLogout}) {
+function Sidebar({onClickDashboard, onClickLogout, onClickNotifications, notificationData}) {
+ 
   return (
 
     <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] text-[20px] m-5 /*border border-red-500*/">
@@ -21,7 +22,7 @@ function Sidebar({onClickDashboard, onClickLogout}) {
           </li>
           <li className="flex items-center gap-4">
             <img src="/icondashboardmessage.png" alt="" />
-            <a href="#" className=" text-[#6C7894]">Messages (2)</a>
+            <button onClick={onClickNotifications} href="#" className=" text-[#6C7894]">{`Messages ${notificationData.length > 0 ? `(${notificationData.length})`: "" } `}</button>
           </li>
         </ul>
       </div>
