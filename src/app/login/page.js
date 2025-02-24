@@ -82,17 +82,30 @@ export default function LoginPage() {
           */
 
   return (
-    <div className=" h-screen bg-white ">
+    <div className="h-screen bg-white border border-red-500">
       <svg
         width="1292"
         height="982"
         viewBox="0 0 1292 982"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full border border-green-500"
       >
-        <mask id="cloudMask" maskUnits="userSpaceOnUse" x="-365" y="-144" width="1657" height="1715">
-          <ellipse cx="463.195" cy="713.5" rx="828.195" ry="857.5" fill="white" />
+        <mask
+          id="cloudMask"
+          maskUnits="userSpaceOnUse"
+          x="-365"
+          y="-144"
+          width="1657"
+          height="1715"
+        >
+          <ellipse
+            cx="463.195"
+            cy="713.5"
+            rx="828.195"
+            ry="857.5"
+            fill="white"
+          />
         </mask>
         <g mask="url(#cloudMask)">
           <image
@@ -101,11 +114,12 @@ export default function LoginPage() {
             y="1.74487"
             width="1436.05"
             height="980.285"
+            className="border border-blue-500"
           />
         </g>
       </svg>
 
-      <div className="flex p-6 relative z-10">
+      <div className="flex p-6 border-2 border-purple-500">
         <img
           src="/ecoguardlogo.png"
           alt="logo"
