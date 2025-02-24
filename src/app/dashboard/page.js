@@ -1,30 +1,38 @@
 "use client";
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 import Sidebar from "../components/sidebar";
 import Headbar from "../components/headbar";
 import Notification from "../components/notification";
 import Room from "../components/room";
 import AQI from "../components/aqi";
 import WQI from "../components/wqi";
-import CategoryTitle from "../components/categorytitle";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchSensorData } from "../slices/sensorSlice";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { logout } from "../slices/authSlice";
 
 export default function Dashboard() {
-  const [notifications, setNotifications] = useState(false);
-  const [activeRoomId, setActiveRoomId] = useState(1);
 
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const sensorData = useSelector((state) => state.sensor);
-  //const { rooms, status, error } = sensorData;
 
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user, router]);
+
+  const [notifications, setNotifications] = useState(false);
+  const [activeRoomId, setActiveRoomId] = useState(1);
+
+
+
+  const sensorData = useSelector((state) => state.sensor);
   const userData = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -33,10 +41,12 @@ export default function Dashboard() {
 
   const handleClickNotifications = () => setNotifications(true);
   const handleClickDashboard = () => setNotifications(false);
-  const handleClickLogout = () => router.push("/login");
+  const handleClickLogout = () => {
+    dispatch(logout());     
+    router.push("/login")};
 
   return (
-    <div>
+    <div> {user ? 
       <div className="flex justify-center items-start  bg-[#E8F3FC]">
         <div>
           <Sidebar
@@ -52,10 +62,17 @@ export default function Dashboard() {
           />
 
           <div className="flex flex-col /*border border-purple-500*/ my-10 mx-20">
-            {!notifications && <CategoryTitle key={0} title={"Rooms"} />}
+            {!notifications && <span className="text-[24px] mb-5">Rooms</span>}
             <div className="flex  justify-center items-center">
               {!notifications &&
-                sensorData.map((room) => <Room key={room.id} room={room} activeRoomId={activeRoomId} setActiveRoomId={setActiveRoomId}/>)}
+                sensorData.map((room) => (
+                  <Room
+                    key={room.id}
+                    room={room}
+                    activeRoomId={activeRoomId}
+                    setActiveRoomId={setActiveRoomId}
+                  />
+                ))}
             </div>
           </div>
 
@@ -75,7 +92,9 @@ export default function Dashboard() {
 
           <div className="flex flex-col justify-start items-start /*border border-green-500*/ mt-4 mx-20">
             <div>
-              {!notifications && <CategoryTitle key={1} title={"Levels"} />}
+              {!notifications && (
+                <span className="text-[24px] mb-5">Levels</span>
+              )}
             </div>
             <div>
               {!notifications && (
@@ -91,7 +110,10 @@ export default function Dashboard() {
               )}
             </div>
             <div className="flex justify-center items-center">
-              <div> {!notifications && <AQI activeRoomId={activeRoomId}/>} </div>
+              <div>
+                {" "}
+                {!notifications && <AQI activeRoomId={activeRoomId} />}{" "}
+              </div>
             </div>
             <div>
               {!notifications && (
@@ -107,35 +129,11 @@ export default function Dashboard() {
               )}
             </div>
             <div className="flex justify-center items-center">
-              <div>{!notifications && <WQI activeRoomId={activeRoomId}/>}</div>
+              <div>{!notifications && <WQI activeRoomId={activeRoomId} />}</div>
             </div>
           </div>
         </div>
-      </div>
-      
-      
-
+      </div> : <p>Yetkisiz erişim! Lütfen giriş yapın.</p>}
     </div>
   );
 }
-
-
-
-/*
-
-<div>
-        {!notifications && (
-          <div>
-            <pre>{JSON.stringify(sensorData, null, 2)}</pre>
-          </div>
-        )}
-      </div>
-
-*/
-
-/*
-  <div>
-        {status === "loading" && <p>Loading sensor data...</p>}
-        {status === "failed" && <p>Error: {error}</p>}
-      </div>
-*/

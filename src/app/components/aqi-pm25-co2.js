@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 import { useState } from "react";
-import { cn } from "@/lib/utils"; // Opsiyonel: Tailwind yardımcı fonksiyonu
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -15,7 +11,6 @@ import {
   AreaChart,
 } from "recharts";
 
-// style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
 function AqiPm25Co2({ title, current, condition, chart }) {
   
   const [selectedRange, setSelectedRange] = useState("1H");
@@ -32,12 +27,7 @@ function AqiPm25Co2({ title, current, condition, chart }) {
 
   return (
     <div className="w-[378px] h-[270px] bg-white rounded-[15px] p-5 mr-5">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      
 
       <div className="flex justify-between items-center mb-3">
         {/* Zaman Filtreleri */}

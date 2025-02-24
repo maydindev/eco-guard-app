@@ -1,19 +1,10 @@
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 
-// style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
 function Sidebar({onClickDashboard, onClickLogout}) {
   return (
 
-    <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] m-5 /*border border-red-500*/">
-
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+    <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] text-[20px] m-5 /*border border-red-500*/">
 
       <div className="p-6 flex  justify-center items-center gap-4">
         <img src="/nksmphoto.png" alt="" className="w-[48px] h-[48px] rounded-[8px] " />

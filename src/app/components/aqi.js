@@ -1,15 +1,11 @@
 "use client";
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
-import { cn } from "@/lib/utils"; // Opsiyonel: Tailwind yardımcı fonksiyonu
 import AqiTemperatureHumidity from "../components/aqi-temperature-humidity";
 import AqiPm25Co2 from "../components/aqi-pm25-co2";
 import AqiVoc from "../components/aqi-voc";
 import { useSelector} from "react-redux";
 
-
-// style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
 function AQI({activeRoomId}) {
 
   const sensorData = useSelector((state) => state.sensor);
@@ -18,13 +14,7 @@ function AQI({activeRoomId}) {
 
   return (
     <div className="flex flex-col w-[911px] justify-betwen items-between /*border border-red-500*/">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
+      
       <div className="flex my-3 justify-between">
         <AqiPm25Co2 title={"PM2.5"} current={pm25.current} condition={pm25.condition} chart={pm25.chart}/>
 

@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-//PM2.5, gerçek zamanlı hava kalitesini ölçen bir ölçektir. Değerleri 0 - 500 arasında değişir. PM2.5 göstergesi, ortamdaki havanın kalitesine ilişkin sizi gerçek zamanlı olarak bilgilendirmek için Philips Hava Temizleme Cihazınızın hava kalitesi ışık halkasına/çubuğuna bağlıdır.
-
-
-
 const initialState = [
   {
     id: 1,
@@ -15,7 +11,7 @@ const initialState = [
       condition : "Vary",
       chart: {
         "1H": [
-          { name: "10", value: 10 },
+          { name: "10", value: 12 },
           { name: "20", value: 30 },
           { name: "30", value: 10 },
           { name: "40", value: 20 },
@@ -45,7 +41,7 @@ const initialState = [
       } 
     },
     airTemperature: {
-      unit: "°C",
+      unit: "*C",
       unitPerValue: 45,
       chart : {
         "1H": 
@@ -202,7 +198,7 @@ const initialState = [
       } 
     },
     airTemperature: {
-      unit: "°C",
+      unit: "*C",
       unitPerValue: 45,
       chart : {
         "1H": 
@@ -359,7 +355,7 @@ const initialState = [
       }
     },
     airTemperature: {
-      unit: "°C",
+      unit: "*C",
       unitPerValue: 45,
       chart : {
         "1H": 
@@ -478,19 +474,6 @@ const initialState = [
   }
 ];
 
-/*
-  const initialState = {
-    rooms: {
-      room1: { temperature: null, humidity: null },
-      room2: { temperature: null, humidity: null },
-      room3: { temperature: null, humidity: null },
-    },
-    water: { temperature: null, ph: null },
-    status: 'idle',
-    error: null,
-  };
-*/
-
 
 export const fetchSensorData = createAsyncThunk(
   "sensor/fetchSensorData",
@@ -503,31 +486,9 @@ export const fetchSensorData = createAsyncThunk(
   }
 );
 
-
 const sensorSlice = createSlice({
   name: "sensor",
   initialState,
-  reducers: {
-    updateSensorData: (state, action) => {
-      return { ...state, ...action.payload };
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchSensorData.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchSensorData.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        //return { ...state, ...action.payload }; // HATA: Immer draft'ı değiştirirken yeni bir state döndürüyorsunuz
-        Object.assign(state, action.payload); // Immer ile doğrudan state’i güncelliyoruz.  Immer’ın hem state’i değiştirmesine hem de yeni bir state döndürmesine engel olmuş oluyorsunuz.
-      });
-    /*.addCase(fetchSensorData.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      });*/
-  },
 });
 
-export const { updateSensorData } = sensorSlice.actions;
 export default sensorSlice.reducer;

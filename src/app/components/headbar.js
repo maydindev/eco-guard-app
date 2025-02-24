@@ -1,18 +1,11 @@
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 
 function Headbar({title, handleClickNotifications}) {
+
   return (
 
     <div className="flex justify-around items-center w-[1200px] h-[80px] mt-5 /*border border-red-500*/">
-
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
 
       <div className="flex p-6 mr-10">
         <h2 className="flex text-[20px] font-bold text-gray-800 mt-4">{title}</h2>
@@ -31,7 +24,6 @@ function Headbar({title, handleClickNotifications}) {
       </div>
 
     </div>
-
 
   );
 }

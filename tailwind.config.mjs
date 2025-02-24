@@ -11,11 +11,6 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      fontFamily: {
-        chivo: ['Chivo', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        jetbrains_mono: "var(--font-jetbrains-mono)",
-      },
     },
   },
   plugins: [],

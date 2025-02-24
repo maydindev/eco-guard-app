@@ -1,26 +1,16 @@
 "use client";
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 import { useState } from "react";
 import { cn } from "@/lib/utils"; // Opsiyonel: Tailwind yardımcı fonksiyonu
 
-// style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
+
 function AqiTemperatureHumidity({title, unit, unitPerValue, chart}) {
   const [selectedRange, setSelectedRange] = useState("1H");
 
-  //console.log(chart?.[selectedRange]);
-  //console.log(chart?.[selectedRange].value);
-
   return (
     <div className="flex border">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
+      
       <div className="w-[201px] h-[270px] bg-white shadow-md rounded-[15px]">
         <h2 className="text-[20px] ml-3 mt-3">{title}</h2>
 
@@ -36,13 +26,13 @@ function AqiTemperatureHumidity({title, unit, unitPerValue, chart}) {
               <span
                 className={`${
                   chart?.[selectedRange].condition === "Good"
-                    ? `border border-[#03AB00] text-[#03AB00]`
+                    ? `border-2 border-[#03AB00] text-[#03AB00]`
                     : chart?.[selectedRange].condition === "Average"
-                    ? `border border-[#FFE500] text-[#FFE500]`
+                    ? `border-2 border-[#FFE500] text-[#FFE500]`
                     : chart?.[selectedRange].condition === "Bad"
-                    ? `border border-[#FF0000] text-[#FF0000]`
+                    ? `border-2 border-[#FF0000] text-[#FF0000]`
                     : ""
-                } px-2 py-1 text-sm rounded-md`}
+                } px-2 text-[8px] font-extrabold rounded-[5px]`}
               >
                 {chart?.[selectedRange].condition}
               </span>

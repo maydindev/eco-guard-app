@@ -1,42 +1,17 @@
 import React from "react";
 import "/src/app/globals.css";
-import Head from "next/head";
 import { useState } from "react";
 
-// style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
+
 function WqiPhTds({ title, unitPerValue, chart }) {
-  // const [phLevel, setPhLevel] = useState(7.5);
-  const [selectedRange, setSelectedRange] = useState("1D");
 
-  /*
-  const getStatus = (ph) => {
-    if (ph < 6.5)
-      return { label: "Acidic", color: "bg-red-500", text: "text-red-500" };
-    if (ph > 8.5)
-      return {
-        label: "Alkaline",
-        color: "bg-yellow-500",
-        text: "text-yellow-500",
-      };
-    return { label: "Good", color: "bg-green-500", text: "text-green-500" };
-  };
+  const [selectedRange, setSelectedRange] = useState("1H");
 
-  const status = getStatus(phLevel);
-  */
-
-  //w-[908px] h-[166px]
-  // w-[908px] h-[166px]
-  // mr-5 my-3
-  // w-full mx-auto max-w-4xl
+ 
 
   return (
     <div className="bg-white shadow-md rounded-[15px] mb-5 p-4 w-[908px]">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      
       <div className="mx-5">
       <div className="flex justify-between items-center mt-1 mb-3">
         {/* Zaman Filtreleri */}
@@ -83,13 +58,13 @@ function WqiPhTds({ title, unitPerValue, chart }) {
         <span
                 className={`${
                   chart?.[selectedRange].condition === "Good"
-                    ? `border border-[#03AB00] text-[#03AB00]`
+                    ? `border-2 border-[#03AB00] text-[#03AB00]`
                     : chart?.[selectedRange].condition === "Average"
-                    ? `border border-[#FFE500] text-[#FFE500]`
+                    ? `border-2 border-[#FFE500] text-[#FFE500]`
                     : chart?.[selectedRange].condition === "Bad"
-                    ? `border border-[#FF0000] text-[#FF0000]`
+                    ? `border-2 border-[#FF0000] text-[#FF0000]`
                     : ""
-                } px-2 py-1 text-sm rounded-md`}
+                } px-2 text-[8px] font-extrabold rounded-[5px] mt-2`}
               >
           {chart?.[selectedRange].condition}
         </span>
@@ -101,6 +76,3 @@ function WqiPhTds({ title, unitPerValue, chart }) {
 
 export default WqiPhTds;
 
-/*
-<span className="text-[8px] font-bold px-1 py-0.50 border border-[#03AB00] rounded text-[#03AB00] ">
-*/
