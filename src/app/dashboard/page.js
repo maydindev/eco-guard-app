@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const [notifications, setNotifications] = useState(false);
+  const [activeRoomId, setActiveRoomId] = useState(1);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -54,9 +55,10 @@ export default function Dashboard() {
             {!notifications && <CategoryTitle key={0} title={"Rooms"} />}
             <div className="flex  justify-center items-center">
               {!notifications &&
-                sensorData.map((room) => <Room key={room.id} room={room} />)}
+                sensorData.map((room) => <Room key={room.id} room={room} activeRoomId={activeRoomId} setActiveRoomId={setActiveRoomId}/>)}
             </div>
           </div>
+
           <div className="ml-12">
             <div>
               {notifications &&
@@ -89,7 +91,7 @@ export default function Dashboard() {
               )}
             </div>
             <div className="flex justify-center items-center">
-              <div> {!notifications && <AQI />} </div>
+              <div> {!notifications && <AQI activeRoomId={activeRoomId}/>} </div>
             </div>
             <div>
               {!notifications && (
@@ -105,7 +107,7 @@ export default function Dashboard() {
               )}
             </div>
             <div className="flex justify-center items-center">
-              <div>{!notifications && <WQI />}</div>
+              <div>{!notifications && <WQI activeRoomId={activeRoomId}/>}</div>
             </div>
           </div>
         </div>

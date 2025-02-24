@@ -4,10 +4,11 @@ import Head from "next/head";
 import { useState } from "react";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function WqiTemperature() {
-  const [temperature, setTemperature] = useState(43);
-  const [selectedRange, setSelectedRange] = useState("1D");
+function WqiTemperature({ chart}) {
+  //const [temperature, setTemperature] = useState(43);
+  const [selectedRange, setSelectedRange] = useState("1H");
 
+  /*
   const getStatus = (temp) => {
     if (temp < 20)
       return { label: "Cold", color: "bg-blue-500", text: "text-blue-500" };
@@ -21,6 +22,7 @@ function WqiTemperature() {
   };
 
   const status = getStatus(temperature);
+  */
 
   // w-[908px] h-[166px]
   // mr-5 my-3
@@ -67,7 +69,7 @@ function WqiTemperature() {
         <div
           className="absolute top-0 left-0 h-full rounded-full transition-all duration-300 border border-[#0093FF]"
           style={{
-            width: `${temperature}%`,
+            width: `${chart?.[selectedRange].value}%`,
             background: "#FFFFFF",
           }}
         ></div>
@@ -82,12 +84,20 @@ function WqiTemperature() {
             lineHeight: "41px",
           }}
         >
-          {temperature}*C
+          {chart?.[selectedRange].value}*C
         </span>
         <span
-          className="text-[8px] font-bold px-1 py-0.50 border border-[#FFE500] rounded text-[#FFE500] "
-        >
-          {status.label}
+                className={`${
+                  chart?.[selectedRange].condition === "Good"
+                    ? `border border-[#03AB00] text-[#03AB00]`
+                    : chart?.[selectedRange].condition === "Average"
+                    ? `border border-[#FFE500] text-[#FFE500]`
+                    : chart?.[selectedRange].condition === "Bad"
+                    ? `border border-[#FF0000] text-[#FF0000]`
+                    : ""
+                } px-2 py-1 text-sm rounded-md`}
+              >
+          {chart?.[selectedRange].condition}
         </span>
       </div>
       </div>
@@ -97,6 +107,14 @@ function WqiTemperature() {
 
 /*
 className={`text-xs font-semibold px-2 py-1 rounded bg-yellow-100 text-yellow-700`}
+
+
+
+
+<span
+          className="text-[8px] font-bold px-1 py-0.50 border border-[#FFE500] rounded text-[#FFE500] "
+        >
+
 */
 
 export default WqiTemperature;

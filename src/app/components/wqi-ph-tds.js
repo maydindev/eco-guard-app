@@ -4,10 +4,11 @@ import Head from "next/head";
 import { useState } from "react";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function WqiPhTds({ title, value, statusTag }) {
-  const [phLevel, setPhLevel] = useState(7.5);
+function WqiPhTds({ title, unitPerValue, chart }) {
+  // const [phLevel, setPhLevel] = useState(7.5);
   const [selectedRange, setSelectedRange] = useState("1D");
 
+  /*
   const getStatus = (ph) => {
     if (ph < 6.5)
       return { label: "Acidic", color: "bg-red-500", text: "text-red-500" };
@@ -21,6 +22,7 @@ function WqiPhTds({ title, value, statusTag }) {
   };
 
   const status = getStatus(phLevel);
+  */
 
   //w-[908px] h-[166px]
   // w-[908px] h-[166px]
@@ -61,7 +63,7 @@ function WqiPhTds({ title, value, statusTag }) {
         <div
           className="absolute top-0 left-0 h-full rounded-full transition-all duration-300"
           style={{
-            width: `${(phLevel / 14) * 100}%`,
+            width: `${(chart?.[selectedRange].value / unitPerValue) * 100}%`,
             backgroundColor: "#0386FF",
           }}
         />
@@ -76,10 +78,20 @@ function WqiPhTds({ title, value, statusTag }) {
             lineHeight: "41px",
           }}
         >
-          {phLevel}
+          {chart?.[selectedRange].value}
         </span>
-        <span className="text-[8px] font-bold px-1 py-0.50 border border-[#03AB00] rounded text-[#03AB00] ">
-          {status.label}
+        <span
+                className={`${
+                  chart?.[selectedRange].condition === "Good"
+                    ? `border border-[#03AB00] text-[#03AB00]`
+                    : chart?.[selectedRange].condition === "Average"
+                    ? `border border-[#FFE500] text-[#FFE500]`
+                    : chart?.[selectedRange].condition === "Bad"
+                    ? `border border-[#FF0000] text-[#FF0000]`
+                    : ""
+                } px-2 py-1 text-sm rounded-md`}
+              >
+          {chart?.[selectedRange].condition}
         </span>
       </div>
       </div>
@@ -88,3 +100,7 @@ function WqiPhTds({ title, value, statusTag }) {
 }
 
 export default WqiPhTds;
+
+/*
+<span className="text-[8px] font-bold px-1 py-0.50 border border-[#03AB00] rounded text-[#03AB00] ">
+*/

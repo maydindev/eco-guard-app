@@ -16,9 +16,11 @@ import {
 } from "recharts";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function AqiPm25Co2() {
-  const [selectedRange, setSelectedRange] = useState("1D");
+function AqiPm25Co2({ title, current, condition, chart }) {
+  
+  const [selectedRange, setSelectedRange] = useState("1H");
 
+  /*
   const sampleData = [
     { name: "10", value: 10 },
     { name: "20", value: 30 },
@@ -26,6 +28,7 @@ function AqiPm25Co2() {
     { name: "40", value: 20 },
     { name: "50", value: 40 },
   ];
+  */
 
   return (
     <div className="w-[378px] h-[270px] bg-white rounded-[15px] p-5 mr-5">
@@ -38,7 +41,7 @@ function AqiPm25Co2() {
 
       <div className="flex justify-between items-center mb-3">
         {/* Zaman Filtreleri */}
-        <h2 className="text-[20px] mb-8">PM2.5</h2>
+        <h2 className="text-[20px] mb-8">{title}</h2>
         <div className="flex justify-end items-center mr-2">
           {["1H", "1D", "1W", "1M"].map((range) => (
             <button
@@ -58,13 +61,21 @@ function AqiPm25Co2() {
 
       <ResponsiveContainer width="100%" height={120}>
         <AreaChart
-          data={sampleData}
+          data={/*sampleData*/chart?.[selectedRange]}
           margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
         >
           <defs>
             <linearGradient id="colorPm25" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#2396EF69" /*stopColor="#FFFFFF"*/ stopOpacity={0.9} />
-              <stop offset="95%" stopColor="#FFFFFF" /*stopColor="#2396EF69"*/ stopOpacity={0.9} />
+              <stop
+                offset="5%"
+                stopColor="#2396EF69"
+                /*stopColor="#FFFFFF"*/ stopOpacity={0.9}
+              />
+              <stop
+                offset="95%"
+                stopColor="#FFFFFF"
+                /*stopColor="#2396EF69"*/ stopOpacity={0.9}
+              />
             </linearGradient>
           </defs>
           <XAxis
@@ -116,8 +127,8 @@ function AqiPm25Co2() {
         </AreaChart>
       </ResponsiveContainer>
       <div className="flex justify-start items-center text-[14px] text-[#606060] mt-2">
-        <span className="mr-32">Current:{""}</span>
-        <span>Condition:{""}</span>
+        <span className="mr-32">Current:{current}</span>
+        <span>Condition:{condition}</span>
       </div>
     </div>
   );

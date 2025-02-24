@@ -17,18 +17,20 @@ import {
 import { PieChart, Pie, Cell } from "recharts";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function AqiVoc() {
+function AqiVoc({compounds}) {
   //const [selectedRange, setSelectedRange] = useState("1D");
 
   // className="font-jetbrains_mono"
 
-  const COLORS = ["#99C2FF", "#66A3FF", "#3366CC"];
+  const COLORS = ["#2396EF69", "#44ADFF", "#006ACD"];
 
+  /*
   const sampleData = [
     { compound: "Benzene", amount: 50, status: "Bad" },
     { compound: "Toluene", amount: 30, status: "Average" },
     { compound: "Gas 3", amount: 20, status: "Good" },
   ];
+  */
 
   return (
     <div className="flex flex-col justify-center items-center w-[460px] h-[270px] bg-white rounded-[15px] shadow-md font-chivo">
@@ -51,7 +53,7 @@ function AqiVoc() {
             <div className="flex  /*border border-red-500*/">
               <PieChart width={200} height={200}>
                 <Pie
-                  data={sampleData}
+                  data={/*sampleData*/compounds}
                   dataKey="amount"
                   nameKey="compound"
                   cx="50%"
@@ -61,7 +63,7 @@ function AqiVoc() {
                   fill="#8884d8"
                   paddingAngle={0}
                 >
-                  {sampleData.map((entry, index) => (
+                  {compounds.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
@@ -83,7 +85,7 @@ function AqiVoc() {
                   </tr>
                 </thead>
                 <tbody>
-                  {sampleData.map((item, index) => (
+                  {compounds.map((item, index) => (
                     <tr key={index} className="">
                       <td className="px-1 py-2">
                         <span
@@ -98,14 +100,14 @@ function AqiVoc() {
                       <td className="px-6 py-2">
                         <span
                           className={`px-1 py-1 text-xs font-semibold rounded ${
-                            item.status === "Bad"
+                            item.condition === "Bad"
                               ? "border border-[#FF0000] text-[#FF0000]"
-                              : item.status === "Average"
+                              : item.condition === "Average"
                               ? "border border-[#FFE500] text-[#FFE500]"
                               : "border border-[#03AB00] text-[#03AB00]"
                           }`}
                         >
-                          {item.status}
+                          {item.condition}
                         </span>
                       </td>
                     </tr>

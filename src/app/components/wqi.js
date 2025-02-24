@@ -4,9 +4,15 @@ import Head from "next/head";
 import { useState } from "react";
 import WqiTemperature from "../components/wqi-temperature";
 import WqiPhTds from "./wqi-ph-tds";
+import { useSelector} from "react-redux";
 
 // style={{ fontFamily: "'Chivo', sans-serif" }}    font-chivo
-function WQI() {
+function WQI({activeRoomId}) {
+
+   const sensorData = useSelector((state) => state.sensor);
+    const activeRoomData = sensorData.find(data => data.id === activeRoomId);
+    const {waterTemperature,ph,tds} = activeRoomData
+    //console.log(pm25.chart);
   
   //w-[908px] h-[166px]
   // w-[908px] h-[166px]
@@ -21,11 +27,12 @@ function WQI() {
         />
       </Head>
 
-      <WqiTemperature />
+      <WqiTemperature chart={waterTemperature.chart}/>
 
-      <WqiPhTds  title={"PH Level"} value={7.5} statusTag={""}/>
+      <WqiPhTds  title={"PH Level"}
+      unitPerValue={ph.unitPerValue} chart={ph.chart}/>
 
-      <WqiPhTds  title={"TDS Level"} value={115} statusTag={""}/>
+      <WqiPhTds  title={"TDS Level"} unitPerValue={tds.unitPerValue} chart={tds.chart}/>
    
     </div>
   );
