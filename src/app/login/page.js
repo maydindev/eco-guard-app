@@ -21,64 +21,27 @@ export default function LoginPage() {
       router.push("/dashboard");
       setIsAgreeError("");
     }
-  }, [user, isAgree]); // user değiştiğinde çalışır
-
-  /*
-  login butonuna iki defa basmanızın temel sebebi Redux store'daki user değerinin güncellenme zamanlamasıyla ilgilidir. İlk tıklamada dispatch(login({ username, password })) çalışıyor ancak user state’i hemen güncellenmediği için if (user && isAgree) kontrolü başarısız oluyor. Redux store güncellendiğinde ise ikinci tıklamada user değeri doğru olduğu için yönlendirme gerçekleşiyor.
-  */
+  }, [user, isAgree]);
 
   const handleLogin = () => {
     dispatch(login({ username, password }));
 
-  if (!isAgree) {
-    setIsAgreeError("Koşulları kabul etmelisiniz!");
-  } else {
-    setIsAgreeError("");
-  }
-    
+    if (!isAgree) {
+      setIsAgreeError("Koşulları kabul etmelisiniz!");
+    } else {
+      setIsAgreeError("");
+    }
   };
 
   const handleSignUp = () => {
     router.push("/register");
   };
 
-
-
-  //bg-[url('/signinbackground.png')]
-  // rounded-tr-[700px] rounded-br-[150px]
-
   //<div className="w-full h-screen bg-white bg-cover rounded-lg bg-center">
   //<div className=" w-full h-screen bg-no-repeat bg-cover bg-center relative inset-0 z-0"></div>
   //viewBox="0 0 1292 982" //1889
 
   /*
-
-  <svg
-        width="1292"
-        height="982"
-        viewBox="0 0 1292 982"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full"
-      >
-        <mask id="cloudMask" maskUnits="userSpaceOnUse" x="-365" y="-144" width="1657" height="1715">
-          <ellipse cx="463.195" cy="713.5" rx="828.195" ry="857.5" fill="white" />
-        </mask>
-        <g mask="url(#cloudMask)">
-          <image
-            href="/your-background-image.jpg"
-            x="-1.23975"
-            y="1.74487"
-            width="1436.05"
-            height="980.285"
-          />
-        </g>
-      </svg>
-  
-          */
-
-      /*
-
       <div className="flex p-6 ">
         <img
           src="/ecoguardlogo.png"
@@ -87,11 +50,7 @@ export default function LoginPage() {
         />
         <img src="/ecoguardlogotext.png" alt="logo" className="h-10 mt-2" />
       </div>
-
-     
-      */
-
-      console.log(isAgree);
+*/
 
   return (
     <div className="flex justify-center items-center h-screen bg-white relative">
@@ -130,13 +89,10 @@ export default function LoginPage() {
         </g>
       </svg>
 
-
       <div className="absolute top-4 left-72 flex items-center p-4">
         <img src="/ecoguardlogo.png" alt="logo" className="w-12 h-12 mr-2" />
         <img src="/ecoguardlogotext.png" alt="logo text" className="h-10" />
       </div>
-
-      
 
       <div className="flex justify-center items-center">
         <div className="bg-black/65 p-8 rounded-2xl shadow-lg backdrop-blur-sm w-96 mt-8 relative">
@@ -198,7 +154,8 @@ export default function LoginPage() {
                 value={isAgree}
                 onChange={(e) => {
                   console.log(e.target.checked);
-                  setIsAgree(e.target.checked)}}
+                  setIsAgree(e.target.checked);
+                }}
                 style={{ borderColor: isAgreeError ? "red" : "white" }}
               />
 

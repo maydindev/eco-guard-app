@@ -12,7 +12,6 @@ import {
 } from "recharts";
 
 function AqiPm25Co2({ title, current, condition, chart }) {
-  
   const [selectedRange, setSelectedRange] = useState("1H");
 
   /*
@@ -27,8 +26,6 @@ function AqiPm25Co2({ title, current, condition, chart }) {
 
   return (
     <div className="w-[378px] h-[270px] bg-white rounded-[15px] p-5 mr-5">
-      
-
       <div className="flex justify-between items-center mb-3">
         {/* Zaman Filtreleri */}
         <h2 className="text-[20px] mb-8">{title}</h2>
@@ -51,7 +48,7 @@ function AqiPm25Co2({ title, current, condition, chart }) {
 
       <ResponsiveContainer width="100%" height={120}>
         <AreaChart
-          data={/*sampleData*/chart?.[selectedRange]}
+          data={/*sampleData*/ chart?.[selectedRange]}
           margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
         >
           <defs>

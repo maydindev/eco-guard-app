@@ -9,9 +9,7 @@ export default function RegisterPage() {
   const handleRegister = () => {
     router.push("/login");
   };
-  
 
-  // /signupbackground.png
   return (
     <div className="w-full h-screen bg-white bg-cover rounded-lg bg-center">
       <div className="w-full h-screen bg-no-repeat bg-cover bg-center absolute inset-0">

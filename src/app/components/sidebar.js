@@ -1,28 +1,48 @@
 import React from "react";
 import "/src/app/globals.css";
 
-function Sidebar({onClickDashboard, onClickLogout, onClickNotifications, notificationData}) {
- 
+function Sidebar({
+  onClickDashboard,
+  onClickLogout,
+  onClickNotifications,
+  notificationData,
+  userData,
+}) {
   return (
-
-    <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] text-[20px] m-5 /*border border-red-500*/">
-
-      <div className="p-6 flex  justify-center items-center gap-4">
-        <img src="/nksmphoto.png" alt="" className="w-[48px] h-[48px] rounded-[8px] " />
-        <span className="text-[20px] font-bold text-gray-800 ">Namık Korona</span>
+    <div className="w-[260px] h-[947px] flex flex-col justify-around items-center bg-white shadow-lg rounded-[30px] font-[Chivo] text-[20px] m-5">
+      <div className="p-6 flex  justify-between items-center gap-4">
+        <img
+          src="/nksmphoto.png"
+          alt=""
+          className="w-[48px] h-[48px] rounded-[8px] "
+        />
+        <span className="text-[20px] font-bold text-gray-800 ">
+          {userData.fullname}
+        </span>
       </div>
-
 
       <div className="w-40 mt-10 mb-20 text-[20px] ">
         <h2 className="mb-5 text-[#405D9F]">Menu</h2>
         <ul>
           <li className="flex items-center gap-4 pb-6">
             <img src="/icondashboardhome.png" alt="" />
-            <button onClick={onClickDashboard} href="#" className=" text-[#2990F1] ">Dashboard</button>
+            <button
+              onClick={onClickDashboard}
+              href="#"
+              className=" text-[#2990F1] "
+            >
+              Dashboard
+            </button>
           </li>
           <li className="flex items-center gap-4">
             <img src="/icondashboardmessage.png" alt="" />
-            <button onClick={onClickNotifications} href="#" className=" text-[#6C7894]">{`Messages ${notificationData.length > 0 ? `(${notificationData.length})`: "" } `}</button>
+            <button
+              onClick={onClickNotifications}
+              href="#"
+              className=" text-[#6C7894]"
+            >{`Messages ${
+              notificationData.length > 0 ? `(${notificationData.length})` : ""
+            } `}</button>
           </li>
         </ul>
       </div>
@@ -32,27 +52,37 @@ function Sidebar({onClickDashboard, onClickLogout, onClickNotifications, notific
         <ul>
           <li className="flex items-center gap-4  pb-6">
             <img src="/icondashboardperson.png" alt="" />
-            <a href="#" className=" text-[#6C7894] ">Profile</a>
+            <a href="#" className=" text-[#6C7894] ">
+              Profile
+            </a>
           </li>
           <li className="flex items-center gap-4  pb-6">
             <img src="/icondashboardfaq.png" alt="" />
-            <a href="#" className=" text-[#6C7894]">FAQ's</a>
+            <a href="#" className=" text-[#6C7894]">
+              FAQ's
+            </a>
           </li>
           <li className="flex items-center gap-4  pb-6">
             <img src="/icondashboardphone.png" alt="" />
-            <a href="#" className=" text-[#6C7894]">Contact us</a>
+            <a href="#" className=" text-[#6C7894]">
+              Contact us
+            </a>
           </li>
           <li className="flex items-center gap-4 ">
             <img src="/icondashboardmessage.png" alt="" />
-            <button onClick={onClickLogout} href="#" className=" text-[#6C7894]">Logout</button>
+            <button
+              onClick={onClickLogout}
+              href="#"
+              className=" text-[#6C7894]"
+            >
+              Logout
+            </button>
           </li>
         </ul>
       </div>
 
       <div className="p-6 mt-auto">
-
         <div className="flex flex-col justift-center items-center text-center">
-
           <div className="flex justift-center items-center p-6">
             <img
               src="/ecoguardlogo.png"
@@ -68,13 +98,9 @@ function Sidebar({onClickDashboard, onClickLogout, onClickNotifications, notific
               Chat Bot
             </button>
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   );
 }
 

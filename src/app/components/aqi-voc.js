@@ -3,7 +3,7 @@ import React from "react";
 import "/src/app/globals.css";
 import { PieChart, Pie, Cell } from "recharts";
 
-function AqiVoc({compounds}) {
+function AqiVoc({ compounds }) {
   const COLORS = ["#2396EF69", "#44ADFF", "#006ACD"];
 
   /*
@@ -29,7 +29,7 @@ function AqiVoc({compounds}) {
             <div className="flex  /*border border-red-500*/">
               <PieChart width={200} height={200}>
                 <Pie
-                  data={/*sampleData*/compounds}
+                  data={/*sampleData*/ compounds}
                   dataKey="amount"
                   nameKey="compound"
                   cx="50%"
@@ -52,8 +52,8 @@ function AqiVoc({compounds}) {
 
             <div className="flex flex-col justify-start ites-center /*border border-green-500*/">
               <table className="w-full border-collapse  text-sm">
-                <thead >
-                  <tr >
+                <thead>
+                  <tr>
                     <th className="px-1 py-2 text-left"></th>
                     <th className="px-1 py-2 text-left">Compound</th>
                     <th className="px-2 py-2 text-left">Amt</th>
@@ -99,5 +99,3 @@ function AqiVoc({compounds}) {
 }
 
 export default AqiVoc;
-
-

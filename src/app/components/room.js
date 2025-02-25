@@ -3,7 +3,6 @@ import React from "react";
 import "/src/app/globals.css";
 
 function Room({ room, activeRoomId, setActiveRoomId }) {
-
   const handleClick = () => {
     setActiveRoomId(room.id);
   };
@@ -16,7 +15,11 @@ function Room({ room, activeRoomId, setActiveRoomId }) {
       onClick={handleClick}
     >
       <div className="flex justify-start">
-        <img src={room.image} alt="" className="m-1 w-[48px] h-[48px] rounded-[15px]" />
+        <img
+          src={room.image}
+          alt=""
+          className="m-1 w-[48px] h-[48px] rounded-[15px]"
+        />
 
         <div className="flex flex-col justify-center items-start">
           <span
